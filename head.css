@@ -1,0 +1,951 @@
+.header
+{
+    height: 55px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 100;
+background-color: white;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: rgb(192,192,192);
+
+}
+.left-section
+{
+    width: 150px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.middle-section
+{
+    flex: 1;
+    margin-left: 70px;
+    margin-right: 35px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+}
+.right-section
+{
+    width: 180px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+.hamburger
+{
+   
+    height: 24px;
+    margin-left: 24px;
+    margin-right: 20px;
+}
+.youtube
+{
+    height: 24px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.youtube:hover {
+    opacity: 0.8;
+}
+.search-bar
+{
+    height: 35px;
+    flex: 1;
+    padding-left: 12px;
+    font-size: 15px;
+    font-family: Oswald ,Arial;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(192,192,192);
+    display: flex;
+    align-items: center;
+    box-shadow: inset 1px 2px 3px rgba(0,0,0,0.3);
+    width: 0;
+}
+.search-button
+{
+    height: 40px;
+    width: 60px;
+    background-color: rgb(225,225,225);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(192,192,192);
+    margin-left: -1px;
+    margin-right: 10px;
+}
+.search-button,.voice-button,.upload-container,.apps-container,.notify-container
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-button .tooltip,.voice-button .tooltip,.upload-container .tooltip,.apps-container .tooltip,.notify-container .tooltip
+{
+    position: absolute;
+    background-color: gray;
+    color: white;
+    font-size: 15px;
+    font-family: Oswald , Arial;
+    bottom: -35px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+    
+}
+.search-button:hover .tooltip, .voice-button:hover .tooltip,.upload-container:hover .tooltip,.apps-container:hover .tooltip,.notify-container:hover .tooltip
+{
+  opacity: 1;
+}
+.voice-button
+{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    border: none;
+}
+.search-icon
+{
+    height: 24px;
+    cursor: pointer;
+}
+.voice-search-icon
+{
+    height: 24px;
+    cursor: pointer;
+}
+.upload
+{
+    height: 24px;
+}
+.apps
+{
+    height: 24px;
+}
+.notifications
+{
+
+    height: 24px;
+}
+.channel-icon
+{
+    height: 28px;
+}
+.voice-button.listening {
+    background-color: #ea4335;
+    animation: pulse 1.5s infinite;
+}
+
+.voice-button.listening .voice-search-icon {
+    filter: brightness(0) invert(1);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.upload-popup,
+.apps-popup,
+.notifications-popup {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 200;
+    top: 40px;
+    right: 0;
+    min-width: 240px;
+    padding: 8px 0;
+}
+
+.upload-popup.show,
+.apps-popup.show,
+.notifications-popup.show {
+    display: block;
+}
+
+.popup-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.popup-item:hover {
+    background-color: #f2f2f2;
+}
+
+.popup-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+}
+
+.popup-item span {
+    font-size: 14px;
+    color: #030303;
+}
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.notification-item {
+    display: flex;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.notification-item:hover {
+    background-color: #f2f2f2;
+}
+
+.notification-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.notification-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #030303;
+}
+
+.notification-info span {
+    font-size: 12px;
+    color: #606060;
+}
+
+.upload-container,
+.apps-container,
+.notify-container {
+    position: relative;
+}
+
+/* Add these styles to your existing CSS */
+.upload-popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 8px 0;
+    z-index: 200;
+}
+
+.popup-item {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.popup-item:hover {
+    background-color: #f2f2f2;
+}
+
+.popup-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+.popup-item span {
+    font-size: 14px;
+    color: #030303;
+}
+
+/* Modal Base Styles */
+.upload-modal,
+.live-modal,
+.post-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 16px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Upload Modal Styles */
+.upload-area {
+    border: 2px dashed #ccc;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-area.dragover {
+    border-color: #1a73e8;
+    background: #f8f9fa;
+}
+
+.select-files-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #1a73e8;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 4px;
+    background: #e5e5e5;
+    margin: 20px 0;
+    border-radius: 2px;
+}
+
+.progress {
+    height: 100%;
+    background: #1a73e8;
+    width: 0;
+    transition: width 0.3s;
+}
+
+/* Live Stream Modal Styles */
+.preview-area {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16/9;
+    margin-bottom: 20px;
+}
+
+#preview {
+    width: 100%;
+    height: 100%;
+}
+
+.stream-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    cursor: pointer;
+}
+
+.stream-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stream-title,
+.stream-privacy {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.go-live-btn {
+    padding: 10px;
+    background: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Post Modal Styles */
+.post-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-text {
+    min-height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.post-attachments {
+    display: flex;
+    gap: 10px;
+}
+
+.attach-btn {
+    padding: 8px 16px;
+    background: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.post-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-btn {
+    padding: 8px 20px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Add these styles for posts in the video grid */
+.post-preview {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 16px;
+}
+
+.post-content {
+    display: flex;
+    gap: 12px;
+}
+
+.post-info {
+    flex: 1;
+}
+
+.post-text {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.post-stats {
+    color: #606060;
+    font-size: 12px;
+}
+
+.post-stats span {
+    margin-right: 8px;
+}
+
+/* Modify thumbnail style for uploaded videos */
+.thumbnail img.picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Add these styles for post actions */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.edit-btn span, .delete-btn span {
+    font-size: 16px;
+}
+
+.delete-btn:hover {
+    background-color: #ffebee;
+}
+
+/* Modify existing post-text style */
+.post-text {
+    flex: 1;
+    margin: 0;
+    padding-right: 8px;
+}
+
+/* Style for edit modal */
+.post-modal .post-text {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 16px;
+}
+
+/* Add these styles for better video preview */
+.thumbnail {
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.thumbnail:hover {
+    opacity: 0.9;
+}
+
+.video-times {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.video-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    color: #030303;
+    display: -webkit-box;
+    display: box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 2.8em; /* Fallback for browsers that don't support line-clamp */
+}
+
+.video-channel,
+.video-stats {
+    font-size: 12px;
+    color: #606060;
+    margin: 0;
+}
+
+/* Video Player Modal Styles */
+.video-player-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.video-player-content {
+    background: white;
+    border-radius: 8px;
+    width: 95%;
+    max-width: 1200px;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+.video-player-header {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.video-player-body {
+    padding: 20px;
+}
+
+.video-player-body video {
+    width: 100%;
+    max-height: 70vh;
+    background: black;
+}
+
+.video-info {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.video-stats {
+    display: flex;
+    gap: 20px;
+    color: #606060;
+    font-size: 14px;
+}
+
+.video-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: none;
+    background: #f2f2f2;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background: #e5e5e5;
+}
+
+.channel-info {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.channel-pic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.channel-details {
+    flex: 1;
+}
+
+.channel-details h4 {
+    margin: 0 0 8px 0;
+}
+
+.subscribe-btn {
+    padding: 10px 16px;
+    background: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.subscribe-btn:hover {
+    background: #aa0000;
+}
+
+/* Make video previews more clickable */
+.video-preview {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.video-preview:hover {
+    transform: scale(1.02);
+}
+
+/* Video Grid Container */
+.video-grid-container {
+    padding-top: 24px;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 12px;
+    padding: 12px 24px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.chip {
+    padding: 8px 12px;
+    border-radius: 16px;
+    border: 1px solid #e5e5e5;
+    background: #f2f2f2;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.chip.active {
+    background: #030303;
+    color: white;
+}
+
+/* Enhanced Video Player Styles */
+.video-player-modal {
+    background: white;
+}
+
+.video-player-main {
+    display: flex;
+    gap: 24px;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.video-primary-content {
+    flex: 2;
+    max-width: 1280px;
+}
+
+.video-secondary-content {
+    flex: 1;
+    max-width: 402px;
+}
+
+.video-actions-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.action-btn.active {
+    background: #e5e5e5;
+}
+
+.video-description {
+    padding: 16px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    margin: 16px 0;
+}
+
+.video-description p {
+    max-height: 60px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+}
+
+.video-description p.expanded {
+    max-height: none;
+}
+
+.comments-section {
+    margin-top: 24px;
+}
+
+.add-comment {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.add-comment input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.add-comment.focused input {
+    border-bottom: 2px solid #030303;
+}
+
+.related-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.related-video {
+    display: flex;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.related-video .thumbnail {
+    width: 168px;
+    height: 94px;
+    position: relative;
+}
+
+.related-video .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.related-video .duration {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 3px 4px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.related-video .video-info {
+    flex: 1;
+}
+
+.related-video h3 {
+    font-size: 14px;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    display: box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.related-video .channel,
+.related-video .stats {
+    font-size: 12px;
+    color: #606060;
+    margin: 4px 0;
+}
+
+/* Add these styles for SVG icons */
+.popup-item img,
+.side-bar-link img {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    color: #030303;
+}
+
+/* Fix for specific icons */
+.upload-container img,
+.apps-container img,
+.notify-container img {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    color: #030303;
+}
+
+/* Add hover effect for better interaction */
+.popup-item:hover img {
+    color: #065fd4;
+}
+
+.popup-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Add these specific styles for SVG icons */
+.popup-icon,
+.side-bar-link svg,
+.header svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Specific styles for header icons */
+.upload svg,
+.apps svg,
+.notifications svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* YouTube branded icons */
+.youtube-tv svg path,
+.youtube-music svg path,
+.youtube-kids svg path {
+    fill: #FF0000;
+}
+
+/* Fix for popup items */
+.popup-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.popup-item svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
