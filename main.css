@@ -17,7 +17,7 @@ body
 .video-title
 {
     font-size: 17px;
-    font-family: Roboto Condensed,Arial;
+    font-family: "Winky Sans",Arial;
     margin-bottom: 10px;
     font-weight: 700;
  
@@ -25,13 +25,13 @@ body
 .video-channel
 {
     font-size: 14px;
-    font-family: Roboto Condensed,Arial;
+    font-family: "Winky Sans",Arial;
     font-weight: 700;
 }
 .video-stats
 {
     font-size: 14px;
-    font-family: Open Sans,Arial;
+    font-family: "Winky Sans",Arial;
     font-weight: 700;
     margin-top: 5px;
 }
