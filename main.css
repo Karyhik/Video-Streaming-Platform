@@ -17,7 +17,7 @@ body
 .video-title
 {
     font-size: 17px;
-    font-family: Open Sans,Arial;
+    font-family: Roboto Condensed,Arial;
     margin-bottom: 10px;
     font-weight: 700;
  
@@ -25,7 +25,7 @@ body
 .video-channel
 {
     font-size: 14px;
-    font-family: Open Sans,Arial;
+    font-family: Roboto Condensed,Arial;
     font-weight: 700;
 }
 .video-stats
